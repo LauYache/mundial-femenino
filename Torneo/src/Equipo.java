@@ -8,11 +8,12 @@ public class Equipo {
 	private String nombre;
 	private String pais;
 	private LinkedList<Jugador> jugadores;
-	public Equipo(String nombre, String pais, LinkedList<Jugador> jugadores) {
+	
+	public Equipo(String nombre, String pais) {
 		super();
 		this.nombre = nombre;
 		this.pais = pais;
-		this.jugadores = jugadores;
+		this.jugadores = new LinkedList<>();;
 	}
 	public String getNombre() {
 		return nombre;
@@ -33,7 +34,10 @@ public class Equipo {
 		this.jugadores = jugadores;
 	}
 	
-	
+	/** Agrega jugadores a la linkedList del equipo, ingresa por medio de input cada parametro de un objeto nuevo Jugador
+	 * 
+	 * @param jugadores
+	 */
 	public void agregarJugador(LinkedList<Jugador> jugadores) {
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		int numeroCamiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de camiseta"));
