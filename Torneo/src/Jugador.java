@@ -1,11 +1,11 @@
 
 public class Jugador {
-	//
 	
 	private String nombre;
 	private int numeroCamiseta;
 	private int posicion;
 	private int edad;
+	
 	public Jugador(String nombre, int numeroCamiseta, int posicion, int edad) {
 		super();
 		this.nombre = nombre;
