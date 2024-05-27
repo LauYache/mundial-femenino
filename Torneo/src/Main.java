@@ -13,19 +13,25 @@ class Main {
 				"Gestionar equipos","Gestionar torneo","Salir"	
 		};
 		String[] menuEquipos = {
-				"Seleccionar equipo","Eliminar jugador", "Agregar jugador","Buscar jugador", "Mostrar cantidad de jugadores",  "Mostrar lista de jugadores","Salir"	
+				"Eliminar jugador", "Agregar jugador","Buscar jugador", "Mostrar cantidad de jugadores",  "Mostrar lista de jugadores","Salir"	
 		};
 		String[] menuTorneo = {
 				"Eliminar equipo", "Agregar equipo","Buscar equipo", "Mostrar cantidad de equipos",  "Mostrar lista de equipos","Jugar partido", "Salir"	
 			};
 		LinkedList<Equipo> equiposTorneo = new LinkedList<Equipo>();
+		equiposTorneo.add(new Equipo("Argentina"));
+		equiposTorneo.add(new Equipo("Chile"));
+		equiposTorneo.add(new Equipo("Alemania"));
+		equiposTorneo.add(new Equipo("Italia"));
+		equiposTorneo.add(new Equipo("Francia"));
+		equiposTorneo.add(new Equipo("Inglaterra"));
 		
 		GestionTorneo nuevoTorneo = new GestionTorneo(equiposTorneo);
 		
 		int opcionPpal;
 		int opcionEquipos;
 		int opcionTorneo;
-		int equipoElegido;
+		String equipoElegido;
 		do {
 			opcionPpal = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuPpal, menuPpal[0]);
 			switch (opcionPpal) {
@@ -36,15 +42,14 @@ class Main {
 				}else {
 				
 				do {
-			
-					
+					equipoElegido = JOptionPane.showInputDialog("Ingrese equipo");
+
 					opcionEquipos = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuEquipos, menuEquipos[0]);
-				
 				
 				switch (opcionEquipos) {
 					case 0:
 					//Menu para seleccionar el equipo
-						equipoElegido = JOptionPane.showOptionDialog(null, "Seleccione equipo", null, 0, 0, null, menuPpal, menuPpal[0]);
+
 							break;
 						case 1:
 							//eliminar jugador
@@ -66,15 +71,9 @@ class Main {
 							//lista jugadores
 		
 							break;
-					
 				}
-					
-				
-
 				}while (opcionEquipos!=6);
 				}
-				
-				
 				break;
 				//Gestion torneo
 			case 1:
@@ -88,6 +87,7 @@ class Main {
 									break;
 								case 1:
 										//agregar equipo
+									
 				
 									break;
 								case 2:

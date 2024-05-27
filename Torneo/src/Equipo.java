@@ -5,22 +5,15 @@ import javax.swing.JOptionPane;
 
 public class Equipo {
 	
-	private String nombre;
 	private String pais;
 	private LinkedList<Jugador> jugadores;
 	
-	public Equipo(String nombre, String pais) {
-		super();
-		this.nombre = nombre;
+	public Equipo(String pais) {
+		
 		this.pais = pais;
 		this.jugadores = new LinkedList<>();;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+
 	public String getPais() {
 		return pais;
 	}
