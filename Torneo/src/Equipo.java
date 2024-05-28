@@ -8,6 +8,13 @@ public class Equipo {
 	private String pais;
 	private LinkedList<Jugador> jugadores;
 	
+	
+	public Equipo() {
+		
+		this.pais = "";
+		this.jugadores = new LinkedList<>();;
+	}
+	
 	public Equipo(String pais) {
 		
 		this.pais = pais;

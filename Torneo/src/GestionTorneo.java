@@ -25,11 +25,16 @@ public class GestionTorneo {
 	 * @param equipoB
 	 */
 	public void jugarPartido(Equipo equipoA, Equipo equipoB) {
-		
 		Equipo equipoGanador = null;
+		Boolean empate = false;
+		
+		do {
+			
+		
+		
 		int puntajeEquipoA = (int) (Math.random() * 10) + 1;
 		int puntajeEquipoB = (int) (Math.random() * 10) + 1;
-		String mensaje = "Equipo ganador: ";
+	
 		
 		if (puntajeEquipoB != puntajeEquipoA) {
 			
@@ -39,21 +44,22 @@ public class GestionTorneo {
 			}else {
 			equipoGanador = equipoB;
 			}
-			mensaje += equipoGanador.getNombre();
 			
 		}else {
-			mensaje = "Partido empatado";
+			empate = true;
 		}
+		}while(empate);
 		
-		JOptionPane.showMessageDialog(null, mensaje);
-		}		
+		JOptionPane.showMessageDialog(null, "Equipo ganador: " + equipoGanador.getPais());
+		
+	}
 	
 	public void agregarEquipo(LinkedList<Equipo>equipos) {
 		
-			String nombre = JOptionPane.showInputDialog("Ingrese nombre del equipo");
+			
 			String pais = JOptionPane.showInputDialog("Ingrese pais");
 			
-			equipos.add(new Equipo(nombre, pais));
+			equipos.add(new Equipo(pais));
 		}
 		
 
@@ -64,7 +70,7 @@ public class GestionTorneo {
 		Equipo equipoAeliminar = null;
 		
 		for (Equipo equipo : equipos) {
-			if (equipo.getNombre().equals(nombre)) {
+			if (equipo.getPais().equals(nombre)) {
 				equipoAeliminar = equipo;
 				break;
 			}
@@ -75,35 +81,72 @@ public class GestionTorneo {
 		
 		
 	public void buscarEquipoPorNombre(LinkedList<Equipo>equipos) {
-		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
+		String nombre = JOptionPane.showInputDialog("Ingrese nombre del equipo");
 		Equipo equipoBuscado = null;
 		
 		for (Equipo equipo : equipos) {
-			if (equipo.getNombre().equals(nombre)) {
+			if (equipo.getPais().equals(nombre)) {
 				equipoBuscado = equipo;
 				JOptionPane.showMessageDialog(null, "Se encontro un resultado" + equipoBuscado);
 				break;
 			}else if (equipoBuscado == null) {
-				JOptionPane.showMessageDialog(null, "No se encontro ningun jugador con ese nombre" + equipoBuscado);
+				JOptionPane.showMessageDialog(null, "No se encontro ningun equipo con ese nombre" + equipoBuscado);
 			}
 		}
 		
 	}
+	/**
+	 * Funcion para seleccionar un equipo de la lista para realizar las operaciones
+	 * @param linkedList de un torneo
+	 * @param array de string con el nombre/pais del equipo
+	 * @return objeto equipo para manipularlo con las opciones del menu del usuario
+	 */
+	public Equipo seleccionarEquipo(LinkedList<Equipo>equipos, String[] listaEquipos) {
+		Equipo equipoBuscado = null;
+		String equipoSeleccionado;
+		equipoSeleccionado = (String) JOptionPane.showInputDialog(null, "Elija una opcion", null, 0, null, listaEquipos, listaEquipos[0]);
+		
+		
+		for (int i = 0; i < listaEquipos.length; i++) {
+			if (equipos.get(i).getPais().equalsIgnoreCase(equipoSeleccionado)) {
+				equipoBuscado = equipos.get(i);
+			}
+			
+		}
+		JOptionPane.showMessageDialog(null, "Estas modificando el equipo: " + equipoBuscado.getPais());
+		
+
+			return equipoBuscado;
+		}
+
+	
 	public int cantidadTotalEquipos(LinkedList<Equipo>equipos) {
 		
 		return equipos.size();
 	}
 	
-	public void mostrarListaEquipos(LinkedList<Equipo>equipos) {
+
+	public String[] generarListaEquipos(LinkedList<Equipo>equipos) {
 		
 		String[] listaEquipos = new String[equipos.size()];
 		
 		for (int i = 0; i < equipos.size(); i++) {
 			
-			listaEquipos[i] = equipos.get(i).getNombre();
-			JOptionPane.showMessageDialog(null, i+1 + "-" + listaEquipos[i]);
+			listaEquipos[i] = equipos.get(i).getPais();
+			
 			
 		}
+		
+		return listaEquipos;
+		
+	}
+	
+	public void mostrarListaEquipos(String[] listaDeEquipos) {
+		
+	
+		JOptionPane.showMessageDialog(null,  listaDeEquipos);
+		
+
 		
 	}
 
