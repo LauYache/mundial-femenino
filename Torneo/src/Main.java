@@ -104,17 +104,16 @@ class Main {
 						break;
 					case 2:
 
-						nuevoTorneo.buscarEquipoPorNombre(nuevoTorneo.getEquipos());
+						nuevoTorneo.buscarEquipoPorNombre();
 						break;
 					case 3:
-						nuevoTorneo.cantidadTotalEquipos(nuevoTorneo.getEquipos());
+						nuevoTorneo.cantidadTotalEquipos();
 
 						break;
 					case 4:
 						
 						nuevoTorneo.mostrarListaEquipos(nuevoTorneo.generarListaEquipos());
 						
-
 						break;
 					case 5:
 						nuevoTorneo.jugarPartido(nuevoTorneo.getEquipos().get(1), nuevoTorneo.getEquipos().get(3));

@@ -19,11 +19,7 @@ public class GestionTorneo {
 		this.equipos = equipos;
 	}
 	
-	/**
-	 * Genera un random para cada equipo y determina cual fue el mayor para imprimir un mensaje de quien fue el ganador. En caso de empate 	tambien lo muestra en pantalla.
-	 * @param equipoA
-	 * @param equipoB
-	 */
+
 	public void jugarPartido(Equipo equipoA, Equipo equipoB) {
 		Equipo equipoGanador = null;
 		Boolean empate = false;
@@ -80,14 +76,14 @@ public class GestionTorneo {
 	}
 		
 		
-	public void buscarEquipoPorNombre(LinkedList<Equipo>equipos) {
+	public void buscarEquipoPorNombre() {
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del equipo");
 		Equipo equipoBuscado = null;
 		
-		for (Equipo equipo : equipos) {
+		for (Equipo equipo : this.getEquipos()) {
 			if (equipo.getPais().equals(nombre)) {
 				equipoBuscado = equipo;
-				JOptionPane.showMessageDialog(null, "Se encontro un resultado" + equipoBuscado);
+				JOptionPane.showMessageDialog(null, "Se encontro un resultado " + equipoBuscado);
 				break;
 			}else if (equipoBuscado == null) {
 				JOptionPane.showMessageDialog(null, "No se encontro ningun equipo con ese nombre" + equipoBuscado);
@@ -95,13 +91,7 @@ public class GestionTorneo {
 		}
 		
 	}
-	/**
-	 * Funcion para seleccionar un equipo de la lista para realizar las operaciones
-	 * @param linkedList de un torneo
-	 * @param array de string con el nombre/pais del equipo
-	 * @return objeto equipo para manipularlo con las opciones del menu del usuario
-	 */
-	
+
 	public String seleccionarEquipo1(LinkedList<Equipo>equipos, String[] listaEquipos) {
 		Equipo equipoBuscado = null;
 		String equipoSeleccionado;
@@ -139,9 +129,9 @@ public class GestionTorneo {
 		}
 
 	
-	public int cantidadTotalEquipos(LinkedList<Equipo>equipos) {
+	public int cantidadTotalEquipos() {
 		
-		return equipos.size();
+		return this.equipos.size();
 	}
 	
 
