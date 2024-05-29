@@ -38,7 +38,8 @@ public class Equipo {
 	 * 
 	 * @param jugadores
 	 */
-	public void agregarJugador(LinkedList<Jugador> jugadores) {
+	public static void agregarJugador(LinkedList<Jugador> jugadores) {
+		
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		int numeroCamiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de camiseta"));
 		int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese edad"));
@@ -61,6 +62,8 @@ public class Equipo {
 		jugadores.remove(jugadorAeliminar);
 	}
 	
+
+	
 	public void buscarJugador(LinkedList<Jugador> jugadores) {
 		
 		//Verificar en caso que existan dos js con mismo nombre?
@@ -80,6 +83,28 @@ public class Equipo {
 		
 	
 	}
+	public String[] generarListaJugadores(LinkedList<Jugador>jugadores) {
+		
+		String[] listaJugadores = new String[jugadores.size()];
+		
+		for (int i = 0; i < jugadores.size(); i++) {
+			
+			listaJugadores[i] = jugadores.get(i).getNombre();
+			
+			
+		}
+		
+		return listaJugadores;
+		
+	}
+	
+	public void mostrarListaEquipos(String[] listaDeEquipos) {
+		
+	
+		JOptionPane.showMessageDialog(null,  listaDeEquipos);
+		
+		
+	}
 
 	
 	public int cantidadJugadores(LinkedList<Jugador> jugadores) {
@@ -87,21 +112,10 @@ public class Equipo {
 		return jugadores.size();
 	}
 	
-	public void listaJugadores(LinkedList<Jugador> jugadores) {
-		String[] listaJugadores = new String[jugadores.size()];
-		
-		for (int i = 0; i < jugadores.size(); i++) {
-			listaJugadores[i] = jugadores.get(i).getNombre();
-			JOptionPane.showMessageDialog(null, i+1 + "-" + listaJugadores[i]);
-			
-		}
-		
+	
 //		for (Jugador jugador: jugadores) {
 //			JOptionPane.showMessageDialog(null, "Jugador: " + jugador);
 //		}
 	}
 	
 	
-
-
-}

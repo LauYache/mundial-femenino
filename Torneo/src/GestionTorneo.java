@@ -54,29 +54,29 @@ public class GestionTorneo {
 		
 	}
 	
-	public void agregarEquipo(LinkedList<Equipo>equipos) {
+	public void agregarEquipo() {
 		
-			
 			String pais = JOptionPane.showInputDialog("Ingrese pais");
 			
-			equipos.add(new Equipo(pais));
+			this.getEquipos().add(new Equipo(pais));
+	
 		}
 		
 
 	//Deberia devolver un linkedList nuevo?
 	
-	public void eliminarEquipoDeLista(LinkedList<Equipo>equipos) {
+	public void eliminarEquipoDeLista() {
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del equipo");
-		Equipo equipoAeliminar = null;
-		
-		for (Equipo equipo : equipos) {
+
+
+		for (Equipo equipo : this.getEquipos()) {
 			if (equipo.getPais().equals(nombre)) {
-				equipoAeliminar = equipo;
+				this.getEquipos().remove(equipo);
 				break;
 			}
 		}
 		
-		equipos.remove(equipoAeliminar);
+	
 	}
 		
 		
@@ -101,6 +101,25 @@ public class GestionTorneo {
 	 * @param array de string con el nombre/pais del equipo
 	 * @return objeto equipo para manipularlo con las opciones del menu del usuario
 	 */
+	
+	public String seleccionarEquipo1(LinkedList<Equipo>equipos, String[] listaEquipos) {
+		Equipo equipoBuscado = null;
+		String equipoSeleccionado;
+		equipoSeleccionado = (String) JOptionPane.showInputDialog(null, "Elija una opcion", null, 0, null, listaEquipos, listaEquipos[0]);
+		
+		
+		for (int i = 0; i < listaEquipos.length; i++) {
+			if (equipos.get(i).getPais().equalsIgnoreCase(equipoSeleccionado)) {
+				equipoBuscado = equipos.get(i);
+			}
+			
+		}
+		JOptionPane.showMessageDialog(null, "Estas modificando el equipo: " + equipoBuscado.getPais());
+		
+
+			return equipoSeleccionado;
+		}
+	
 	public Equipo seleccionarEquipo(LinkedList<Equipo>equipos, String[] listaEquipos) {
 		Equipo equipoBuscado = null;
 		String equipoSeleccionado;
@@ -126,7 +145,7 @@ public class GestionTorneo {
 	}
 	
 
-	public String[] generarListaEquipos(LinkedList<Equipo>equipos) {
+	public String[] generarListaEquipos() {
 		
 		String[] listaEquipos = new String[equipos.size()];
 		
