@@ -25,8 +25,6 @@ class Main {
 			}
 		};
 
-	
-
 		GestionTorneo nuevoTorneo = new GestionTorneo(new LinkedList<Equipo>() {
 			{
 				add(new Equipo("Argentina"));
@@ -90,6 +88,7 @@ class Main {
 			// Gestion torneo
 			case 1:
 				do {
+					
 					opcionTorneo = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuTorneo,
 							menuTorneo[0]);
 
@@ -107,7 +106,8 @@ class Main {
 						nuevoTorneo.buscarEquipoPorNombre();
 						break;
 					case 3:
-						nuevoTorneo.cantidadTotalEquipos();
+						JOptionPane.showMessageDialog(null, "Hay " + nuevoTorneo.cantidadTotalEquipos() + " equipos en el torneo. ");
+						
 
 						break;
 					case 4:
@@ -116,7 +116,8 @@ class Main {
 						
 						break;
 					case 5:
-						nuevoTorneo.jugarPartido(nuevoTorneo.getEquipos().get(1), nuevoTorneo.getEquipos().get(3));
+					
+						nuevoTorneo.jugarPartido(nuevoTorneo.getEquipos(), nuevoTorneo.generarListaEquipos());
 						break;
 
 					}

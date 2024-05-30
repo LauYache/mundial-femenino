@@ -34,11 +34,7 @@ public class Equipo {
 		this.jugadores = jugadores;
 	}
 	
-	/** Agrega jugadores a la linkedList del equipo, ingresa por medio de input cada parametro de un objeto nuevo Jugador
-	 * 
-	 * @param jugadores
-	 */
-	public static void agregarJugador(LinkedList<Jugador> jugadores) {
+	public void agregarJugador(LinkedList<Jugador> jugadores) {
 		
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		int numeroCamiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de camiseta"));
@@ -66,7 +62,6 @@ public class Equipo {
 	
 	public void buscarJugador(LinkedList<Jugador> jugadores) {
 		
-		//Verificar en caso que existan dos js con mismo nombre?
 		
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		Jugador jugadorBuscado = null;
