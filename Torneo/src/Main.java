@@ -39,9 +39,7 @@ class Main {
 		for (Equipo equipos : nuevoTorneo.getEquipos()) {
 			for (Jugador jugador : jugadoras) {
 				equipos.getJugadores().add(jugador);
-
 			}
-			System.out.print(nuevoTorneo.getEquipos().get(4).getJugadores());
 		}
 
 		String[] listaEquipos = nuevoTorneo.generarListaEquipos();
@@ -51,6 +49,8 @@ class Main {
 		int opcionTorneo;
 
 		Equipo equipoAModificar = new Equipo();
+		
+		JOptionPane.showMessageDialog(null, "Bienvenido al gestor del Mundial Femenino de fútbol. \n Presiona **Ok** para ingresar al menú.");
 
 		do {
 			opcionPpal = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuPpal,

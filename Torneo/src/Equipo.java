@@ -104,7 +104,5 @@ public class Equipo {
 		return jugadores.size();
 	}
 
-//		for (Jugador jugador: jugadores) {
-//			JOptionPane.showMessageDialog(null, "Jugador: " + jugador);
-//		}
+
 }
