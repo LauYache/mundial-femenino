@@ -10,7 +10,7 @@ class Main {
 		String[] menuTorneo = { "Eliminar equipo", "Agregar equipo", "Buscar equipo", "Mostrar cantidad de equipos",
 				"Mostrar lista de equipos", "Jugar partido", "Salir" };
 
-		LinkedList<Jugador> jugadorasArgentina = new LinkedList<Jugador>() {
+		LinkedList<Jugador> jugadoras = new LinkedList<Jugador>() {
 			{
 				add(new Jugador("Ana Pérez", 9, 1, 24));
 				add(new Jugador("María López", 11, 2, 27));
@@ -35,7 +35,15 @@ class Main {
 				add(new Equipo("Inglaterra"));
 			}
 		});
-		
+
+		for (Equipo equipos : nuevoTorneo.getEquipos()) {
+			for (Jugador jugador : jugadoras) {
+				equipos.getJugadores().add(jugador);
+
+			}
+			System.out.print(nuevoTorneo.getEquipos().get(4).getJugadores());
+		}
+
 		String[] listaEquipos = nuevoTorneo.generarListaEquipos();
 
 		int opcionPpal;
@@ -48,7 +56,7 @@ class Main {
 			opcionPpal = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuPpal,
 					menuPpal[0]);
 			switch (opcionPpal) {
-			// Gestion equipos
+
 			case 0:
 				if (nuevoTorneo.getEquipos().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Vuelva al inicio y agregue equipos al torneo");
@@ -77,7 +85,7 @@ class Main {
 
 							break;
 						case 4:
-							equipoAModificar.generarListaJugadores(jugadorasArgentina);
+							equipoAModificar.generarListaJugadores(jugadoras);
 
 							break;
 
@@ -85,10 +93,10 @@ class Main {
 					} while (opcionEquipos != 5);
 				}
 				break;
-			// Gestion torneo
+
 			case 1:
 				do {
-					
+
 					opcionTorneo = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuTorneo,
 							menuTorneo[0]);
 
@@ -106,17 +114,17 @@ class Main {
 						nuevoTorneo.buscarEquipoPorNombre();
 						break;
 					case 3:
-						JOptionPane.showMessageDialog(null, "Hay " + nuevoTorneo.cantidadTotalEquipos() + " equipos en el torneo. ");
-						
+						JOptionPane.showMessageDialog(null,
+								"Hay " + nuevoTorneo.cantidadTotalEquipos() + " equipos en el torneo. ");
 
 						break;
 					case 4:
-						
+
 						nuevoTorneo.mostrarListaEquipos(nuevoTorneo.generarListaEquipos());
-						
+
 						break;
 					case 5:
-					
+
 						nuevoTorneo.jugarPartido(nuevoTorneo.getEquipos(), nuevoTorneo.generarListaEquipos());
 						break;
 
@@ -130,4 +138,5 @@ class Main {
 
 		} while (opcionPpal != 2);
 	}
+
 }

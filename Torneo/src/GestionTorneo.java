@@ -27,8 +27,6 @@ public class GestionTorneo {
 
 	}
 
-	// Deberia devolver un linkedList nuevo?
-
 	public void eliminarEquipoDeLista() {
 		String nombre = JOptionPane.showInputDialog("Ingrese el nombre del equipo");
 
@@ -44,7 +42,6 @@ public class GestionTorneo {
 	public void buscarEquipoPorNombre() {
 		String nombre = JOptionPane.showInputDialog("Ingrese el nombre del equipo");
 		Equipo equipoBuscado = null;
-		
 
 		for (Equipo equipo : this.getEquipos()) {
 			if (equipo.getPais().equalsIgnoreCase(nombre)) {
@@ -52,7 +49,8 @@ public class GestionTorneo {
 				JOptionPane.showMessageDialog(null, equipoBuscado.getPais() + " está en el torneo");
 				break;
 			} else if (equipoBuscado == null) {
-				JOptionPane.showMessageDialog(null, "No se encontro ningun equipo. \nPara agregarlo vuelva al menú principal.");
+				JOptionPane.showMessageDialog(null,
+						"No se encontro ningun equipo. \nPara agregarlo vuelva al menú principal.");
 				break;
 			}
 		}
@@ -95,7 +93,7 @@ public class GestionTorneo {
 	public int cantidadTotalEquipos() {
 
 		return this.equipos.size();
-		
+
 	}
 
 	public String[] generarListaEquipos() {
@@ -119,9 +117,14 @@ public class GestionTorneo {
 	}
 
 	public void jugarPartido(LinkedList<Equipo> equipos, String[] listaEquipos) {
+		
+		
 		boolean flag = true;
-		Equipo equipoA;
+		Equipo equipoA = null;
 		Equipo equipoB;
+		int goles = 0;
+		Equipo equipoGanador = null;
+		Boolean empate = false;
 		
 		do {
 			
@@ -129,36 +132,42 @@ public class GestionTorneo {
 			equipoB = this.seleccionarEquipo(equipos, listaEquipos);
 			
 			 if (equipoA.getPais().equals(equipoB.getPais())) {
+				 JOptionPane.showMessageDialog(null, "No se puede jugar el partido entre un mismo equipo");
 		            flag = true; 
 		        } else {
 		            flag = false; 
 		        }
-		    } while (flag); 
-		int goles = 0;
-		
+		    } while(flag); 
 
-		Equipo equipoGanador = null;
-		Boolean empate = false;
+		if (equipoA.getJugadores().size() < 7 || equipoA.getJugadores().size() < 7) {
+			
+			JOptionPane.showMessageDialog(null, "No se puede jugar el partido porque faltan jugadores");
+		 
+		}else {
 
 		do {
 
-			int puntajeEquipoA = (int) (Math.random() * 5) + 1;
-			int puntajeEquipoB = (int) (Math.random() * 5) + 1;
+			int puntajeEquipoA = (int) (Math.random()*5) + 1;
+			int puntajeEquipoB = (int) (Math.random()*5) + 1;
 
 			if (puntajeEquipoB != puntajeEquipoA) {
 
 				if (puntajeEquipoB < puntajeEquipoA) {
 					equipoGanador = equipoA;
 					goles = puntajeEquipoA;
+					empate = false;
 
 				} else {
 					equipoGanador = equipoB;
 					goles = puntajeEquipoB;
+					empate = false;
 
 				}
 
 			} else {
 				empate = true;
+				JOptionPane.showMessageDialog(null, "Hay empate. Juegan alargue");
+				
 			}
 		} while (empate);
 
@@ -166,4 +175,5 @@ public class GestionTorneo {
 
 	}
 
+	}
 }
