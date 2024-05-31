@@ -38,54 +38,55 @@ public class Equipo {
 		this.jugadores = jugadores;
 	}
 
-	public void agregarJugador(LinkedList<Jugador> jugadores) {
+	public void agregarJugador() {
 
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		int numeroCamiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de camiseta"));
 		int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese edad"));
 		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese posicion"));
 
-		jugadores.add(new Jugador(nombre, numeroCamiseta, posicion, edad));
+		this.jugadores.add(new Jugador(nombre, numeroCamiseta, posicion, edad));
 	}
 
-	public void eliminarJugador(LinkedList<Jugador> jugadores) {
+	public void eliminarJugador() {
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		Jugador jugadorAeliminar = null;
 
-		for (Jugador jugador : jugadores) {
+		for (Jugador jugador : this.jugadores) {
 			if (jugador.getNombre().equals(nombre)) {
 				jugadorAeliminar = jugador;
 				break;
 			}
 		}
 
-		jugadores.remove(jugadorAeliminar);
+		this.jugadores.remove(jugadorAeliminar);
 	}
 
-	public void buscarJugador(LinkedList<Jugador> jugadores) {
+	public void buscarJugador() {
 
 		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
 		Jugador jugadorBuscado = null;
 
-		for (Jugador jugador : jugadores) {
+		for (Jugador jugador : this.jugadores) {
 			if (jugador.getNombre().equalsIgnoreCase(nombre)) {
 				jugadorBuscado = jugador;
 				JOptionPane.showMessageDialog(null, "El jugador " + jugadorBuscado.getNombre() + "está en la lista");
 				break;
 			} else if (jugadorBuscado == null) {
 				JOptionPane.showMessageDialog(null, "No se encontro ningun jugador con ese nombre");
+				break;
 			}
 		}
 
 	}
 
-	public String[] generarListaJugadores(LinkedList<Jugador> jugadores) {
+	public String[] generarListaJugadoras() {
 
 		String[] listaJugadores = new String[jugadores.size()];
 
-		for (int i = 0; i < jugadores.size(); i++) {
+		for (int i = 0; i < this.jugadores.size(); i++) {
 
-			listaJugadores[i] = jugadores.get(i).getNombre();
+			listaJugadores[i] = this.jugadores.get(i).getNombre();
 
 		}
 
@@ -93,15 +94,15 @@ public class Equipo {
 
 	}
 
-	public void mostrarListaEquipos(String[] listaDeEquipos) {
+	public void mostrarListaJugadoras(String[] listaDeJugadoras) {
 
-		JOptionPane.showMessageDialog(null, listaDeEquipos);
+		JOptionPane.showMessageDialog(null, listaDeJugadoras);
 
 	}
 
-	public int cantidadJugadores(LinkedList<Jugador> jugadores) {
+	public void cantidadJugadoras() {
 
-		return jugadores.size();
+		JOptionPane.showMessageDialog(null, this.jugadores.size());
 	}
 
 

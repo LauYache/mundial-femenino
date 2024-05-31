@@ -22,10 +22,11 @@ class Main {
 				add(new Jugador("Marta Ruiz", 5, 8, 26));
 				add(new Jugador("Irene Gómez", 3, 9, 29));
 				add(new Jugador("Paula Díaz", 2, 10, 23));
+				add(new Jugador("Romina Cabello", 4, 10, 23));
 			}
 		};
 
-		GestionTorneo nuevoTorneo = new GestionTorneo(new LinkedList<Equipo>() {
+		GestionTorneo mundialFemenino = new GestionTorneo(new LinkedList<Equipo>() {
 			{
 				add(new Equipo("Argentina"));
 				add(new Equipo("Chile"));
@@ -36,13 +37,13 @@ class Main {
 			}
 		});
 
-		for (Equipo equipos : nuevoTorneo.getEquipos()) {
+		for (Equipo equipos : mundialFemenino.getEquipos()) {
 			for (Jugador jugador : jugadoras) {
 				equipos.getJugadores().add(jugador);
 			}
 		}
 
-		String[] listaEquipos = nuevoTorneo.generarListaEquipos();
+		String[] listaEquipos = mundialFemenino.generarListaEquipos();
 
 		int opcionPpal;
 		int opcionEquipos;
@@ -50,7 +51,7 @@ class Main {
 
 		Equipo equipoAModificar = new Equipo();
 		
-		JOptionPane.showMessageDialog(null, "Bienvenido al gestor del Mundial Femenino de fútbol. \n Presiona **Ok** para ingresar al menú.");
+		JOptionPane.showMessageDialog(null, "Bienvenido al gestor del Mundial Femenino de fútbol. \n Presiona **Aceptar** para ingresar al menú.");
 
 		do {
 			opcionPpal = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null, menuPpal,
@@ -58,34 +59,38 @@ class Main {
 			switch (opcionPpal) {
 
 			case 0:
-				if (nuevoTorneo.getEquipos().isEmpty()) {
+				if (mundialFemenino.getEquipos().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Vuelva al inicio y agregue equipos al torneo");
 				} else {
 
 					do {
-						equipoAModificar = nuevoTorneo.seleccionarEquipo(nuevoTorneo.getEquipos(), listaEquipos);
+						int equipoSeleccionado = seleccionarEquipo(mundialFemenino.getEquipos());
 
 						opcionEquipos = JOptionPane.showOptionDialog(null, "Elija una opcion", null, 0, 0, null,
 								menuEquipos, menuEquipos[0]);
 
 						switch (opcionEquipos) {
 						case 0:
+							mundialFemenino.getEquipos().get(equipoSeleccionado).eliminarJugador();
 
 							break;
 						case 1:
-							equipoAModificar.agregarJugador(equipoAModificar.getJugadores());
+							mundialFemenino.getEquipos().get(equipoSeleccionado).agregarJugador();
+							
 
 							break;
 						case 2:
-							equipoAModificar.buscarJugador(equipoAModificar.getJugadores());
+							mundialFemenino.getEquipos().get(equipoSeleccionado).buscarJugador();
 
 							break;
 						case 3:
-							equipoAModificar.cantidadJugadores(equipoAModificar.getJugadores());
+							mundialFemenino.getEquipos().get(equipoSeleccionado).cantidadJugadoras();
 
 							break;
 						case 4:
-							equipoAModificar.generarListaJugadores(jugadoras);
+							
+							String[] listaJugadoras = mundialFemenino.getEquipos().get(equipoSeleccionado).generarListaJugadoras();
+							mundialFemenino.getEquipos().get(equipoSeleccionado).mostrarListaJugadoras(listaJugadoras);
 
 							break;
 
@@ -103,29 +108,29 @@ class Main {
 					switch (opcionTorneo) {
 					case 0:
 
-						nuevoTorneo.eliminarEquipoDeLista();
+						mundialFemenino.eliminarEquipoDeLista();
 						break;
 					case 1:
-						nuevoTorneo.agregarEquipo();
+						mundialFemenino.agregarEquipo();
 
 						break;
 					case 2:
 
-						nuevoTorneo.buscarEquipoPorNombre();
+						mundialFemenino.buscarEquipoPorNombre();
 						break;
 					case 3:
 						JOptionPane.showMessageDialog(null,
-								"Hay " + nuevoTorneo.cantidadTotalEquipos() + " equipos en el torneo. ");
+								"Hay " + mundialFemenino.cantidadTotalEquipos() + " equipos en el torneo. ");
 
 						break;
 					case 4:
 
-						nuevoTorneo.mostrarListaEquipos(nuevoTorneo.generarListaEquipos());
+						mundialFemenino.mostrarListaEquipos(mundialFemenino.generarListaEquipos());
 
 						break;
 					case 5:
 
-						nuevoTorneo.jugarPartido(nuevoTorneo.getEquipos(), nuevoTorneo.generarListaEquipos());
+						mundialFemenino.jugarPartido(mundialFemenino.getEquipos(), mundialFemenino.generarListaEquipos());
 						break;
 
 					}
@@ -137,6 +142,17 @@ class Main {
 			}
 
 		} while (opcionPpal != 2);
+	}
+	
+	public static int seleccionarEquipo(LinkedList<Equipo> equipos) {
+		String[] equiposarray = new String[equipos.size()];
+		for (int i = 0; i < equipos.size(); i++) {
+			equiposarray[i] = equipos.get(i).getPais();
+		}
+		int opcion = JOptionPane.showOptionDialog(null, 
+				"Seleccione equipo", null, 0, 0, null, equiposarray, equiposarray[0]);
+		
+		return opcion;
 	}
 
 }
