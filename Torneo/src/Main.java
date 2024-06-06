@@ -4,11 +4,11 @@ import javax.swing.JOptionPane;
 class Main {
 	public static void main(String[] args) {
 
-		String[] menuPpal = { "Gestionar equipos", "Gestionar torneo", "Salir" };
+		String[] menuPpal = { "Gestionar equipos", "Gestionar torneo", "Jugar mundial", "Salir" };
 		String[] menuEquipos = { "Eliminar jugador", "Agregar jugador", "Buscar jugador",
 				"Mostrar cantidad de jugadores", "Mostrar lista de jugadores", "Salir" };
 		String[] menuTorneo = { "Eliminar equipo", "Agregar equipo", "Buscar equipo", "Mostrar cantidad de equipos",
-				"Mostrar lista de equipos", "Jugar partido", "Salir" };
+				"Mostrar lista de equipos", "Jugar partido", "Jugar torneo", "Salir" };
 
 		LinkedList<Jugador> jugadoras = new LinkedList<Jugador>() {
 			{
@@ -34,6 +34,19 @@ class Main {
 				add(new Equipo("Italia"));
 				add(new Equipo("Francia"));
 				add(new Equipo("Inglaterra"));
+				add(new Equipo("Holanda"));
+				add(new Equipo("Brasil"));
+				add(new Equipo("Costa Rica"));
+				add(new Equipo("Japon"));
+				add(new Equipo("Espana"));
+				add(new Equipo("Belgica"));
+				add(new Equipo("Peru"));
+				add(new Equipo("Nigeria"));
+				add(new Equipo("Ghana"));
+				add(new Equipo("Gales"));
+
+
+
 			}
 		});
 
@@ -133,15 +146,26 @@ class Main {
 						mundialFemenino.jugarPartido(mundialFemenino.getEquipos(), mundialFemenino.generarListaEquipos());
 						break;
 
+					case 6:
+						
+						mundialFemenino.jugarTorneo();
+						break;
 					}
+					
 
-				} while (opcionTorneo != 6);
+				} while (opcionTorneo != 7);
 
-				break;
+					break;
 
+		
+			
+			case 2:
+				
+					mundialFemenino.jugarFases(mundialFemenino.getEquipos());
+					break;
 			}
 
-		} while (opcionPpal != 2);
+		} while (opcionPpal != 3);
 	}
 	
 	public static int seleccionarEquipo(LinkedList<Equipo> equipos) {
