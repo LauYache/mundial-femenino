@@ -14,4 +14,4 @@ Este programa es un gestor de torneos diseñado específicamente para el Mundial
 
 ## Diagrama
 
-<img width="50%" src="diagrama.png"/>
+<img width="100%" src="diagrama.png"/>
