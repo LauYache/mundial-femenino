@@ -3,12 +3,15 @@
 
 ## Descripción
 
-Este programa es un gestor de torneos diseñado específicamente para el Mundial Femenino de Fútbol. Permite la administración y seguimiento de los equipos, partidos, resultados y estadísticas del torneo.
+Este programa es un gestor de torneos diseñado específicamente para el Mundial Femenino de Fútbol. Permite la administración y seguimiento de los equipos, partidos, resultados y fases del torneo.
 
 ## Características
 
 - **Gestión de Equipos:** Añadir, editar y eliminar equipos participantes.
-- **Programación de Partidos:** Crear y administrar el calendario de partidos.
-- **Registro de Resultados:** Ingresar los resultados de los partidos jugados.
-- **Estadísticas:** Generar y visualizar estadísticas de equipos y jugadoras.
-- **Interfaz de Usuario:** Interfaz gráfica intuitiva y fácil de usar.
+- **Gestión de Jugadores:** Añadir, editar y eliminar jugadores participantes.
+- **Generacion de fases del torneo:** Generar automaticamente los partidos entre los equipos.
+- **Apuesta:** El usuario puede ingresar un pronostico del equipo que estima ganador, antes de comenzar el torneo.
+
+## Diagrama
+
+<img width="50%" src="diagrama.png"/>

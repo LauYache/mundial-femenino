@@ -40,43 +40,66 @@ public class Equipo {
 
 	public void agregarJugador() {
 
-		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
-		int numeroCamiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de camiseta"));
-		int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese edad"));
-		int posicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese posicion"));
+		String nombre;
+		int numeroCamiseta;
+		int edad;
+		int posicion;
 
-		this.jugadores.add(new Jugador(nombre, numeroCamiseta, posicion, edad));
+		do {
+
+			nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
+			numeroCamiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero de camiseta"));
+			edad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese edad"));
+			posicion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese posicion"));
+
+			this.jugadores.add(new Jugador(nombre, numeroCamiseta, posicion, edad));
+		} while (!nombre.isEmpty() || numeroCamiseta <= 0 || numeroCamiseta > 99 || posicion >= 0 && posicion < 11);
 	}
 
 	public void eliminarJugador() {
-		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
-		Jugador jugadorAeliminar = null;
 
-		for (Jugador jugador : this.jugadores) {
-			if (jugador.getNombre().equals(nombre)) {
-				jugadorAeliminar = jugador;
-				break;
+		String nombre;
+		do {
+			nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
+			Jugador jugadorAeliminar = null;
+
+			for (Jugador jugador : this.jugadores) {
+				if (jugador.getNombre().equals(nombre)) {
+					jugadorAeliminar = jugador;
+					break;
+				}
+
 			}
-		}
 
-		this.jugadores.remove(jugadorAeliminar);
+			this.jugadores.remove(jugadorAeliminar);
+		} while (nombre == "");
 	}
 
 	public void buscarJugador() {
+		String nombre;
 
-		String nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
-		Jugador jugadorBuscado = null;
+		do {
 
-		for (Jugador jugador : this.jugadores) {
-			if (jugador.getNombre().equalsIgnoreCase(nombre)) {
-				jugadorBuscado = jugador;
-				JOptionPane.showMessageDialog(null, "El jugador " + jugadorBuscado.getNombre() + "está en la lista");
-				break;
-			} else if (jugadorBuscado == null) {
-				JOptionPane.showMessageDialog(null, "No se encontro ningun jugador con ese nombre");
-				break;
+			nombre = JOptionPane.showInputDialog("Ingrese nombre del jugador");
+			Jugador jugadorBuscado = null;
+
+			for (Jugador jugador : this.jugadores) {
+				if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+					jugadorBuscado = jugador;
+					JOptionPane.showMessageDialog(null,
+							"El jugador " + jugadorBuscado.getNombre() + "está en la lista");
+					break;
+				} else if (jugadorBuscado == null) {
+					JOptionPane.showMessageDialog(null, "No se encontro ningun jugador con ese nombre");
+					break;
+				} else if (nombre.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, "Vuelva a realizar la busqueda, ingrese un nombre valido.");
+
+				}
+
 			}
-		}
+		} while (nombre.isEmpty());
 
 	}
 
@@ -104,6 +127,5 @@ public class Equipo {
 
 		JOptionPane.showMessageDialog(null, this.jugadores.size());
 	}
-
 
 }

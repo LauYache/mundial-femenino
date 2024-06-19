@@ -112,7 +112,12 @@ public class GestionTorneo {
 	}
 
 	public void jugarFases(LinkedList<Equipo> equipos) {
-
+		String paisGanador = "";
+		
+		while(equipos.size() == 16){
+		 paisGanador = (String) JOptionPane.showInputDialog(null, "Selecciona tu equipo ganador", null, 0, null, this.generarListaEquipos(), this.generarListaEquipos()[0]);
+		}
+	
 
 		System.out.println("-------------------");
 		LinkedList<Equipo> equiposGanadores = new LinkedList<Equipo>();
@@ -147,6 +152,10 @@ public class GestionTorneo {
 		if (equiposGanadores.size() == 1) {
 
 			JOptionPane.showMessageDialog(null, "Equipo campeon: " + equiposGanadores.getFirst().getPais());
+			if (paisGanador.equalsIgnoreCase(equiposGanadores.getFirst().getPais())){
+				JOptionPane.showMessageDialog(null, "Ganaste la apuesta!");
+
+			}
 
 		} else {
 			this.jugarFases(equiposGanadores);
