@@ -8,7 +8,7 @@ class Main {
 		String[] menuEquipos = { "Eliminar jugador", "Agregar jugador", "Buscar jugador",
 				"Mostrar cantidad de jugadores", "Mostrar lista de jugadores", "Salir" };
 		String[] menuTorneo = { "Eliminar equipo", "Agregar equipo", "Buscar equipo", "Mostrar cantidad de equipos",
-				"Mostrar lista de equipos", "Jugar partido", "Jugar torneo", "Salir" };
+				"Mostrar lista de equipos", "Jugar amistoso", "Jugar torneo", "Salir" };
 
 		LinkedList<Jugador> jugadoras = new LinkedList<Jugador>() {
 			{

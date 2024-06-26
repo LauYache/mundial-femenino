@@ -58,22 +58,7 @@ public class GestionTorneo {
 
 	}
 
-	public String seleccionarEquipo1(LinkedList<Equipo> equipos, String[] listaEquipos) {
-		Equipo equipoBuscado = null;
-		String equipoSeleccionado;
-		equipoSeleccionado = (String) JOptionPane.showInputDialog(null, "Elija una opcion", null, 0, null, listaEquipos,
-				listaEquipos[0]);
 
-		for (int i = 0; i < listaEquipos.length; i++) {
-			if (equipos.get(i).getPais().equalsIgnoreCase(equipoSeleccionado)) {
-				equipoBuscado = equipos.get(i);
-			}
-
-		}
-		JOptionPane.showMessageDialog(null, "Estas modificando el equipo: " + equipoBuscado.getPais());
-
-		return equipoSeleccionado;
-	}
 
 	public Equipo seleccionarEquipo(LinkedList<Equipo> equipos, String[] listaEquipos) {
 		Equipo equipoBuscado = null;
@@ -110,58 +95,66 @@ public class GestionTorneo {
 		return listaEquipos;
 
 	}
+	
+	public void mostrarResultadosPartido(Equipo equipoA, int golesA, int tarjetasAmarillasA, int tarjetasRojasA, Equipo equipoB, int golesB, int tarjetasAmarillasB, int tarjetasRojasB) {
+		JOptionPane.showMessageDialog(null, equipoA.getPais() + " " + golesA + " - " + golesB + " " + equipoB.getPais() + "\nTarjetas Amarillas: " + equipoA.getPais() + ": " + tarjetasAmarillasA + ", " + equipoB.getPais() + ": " + tarjetasAmarillasB +
+		"\nTarjetas Rojas: " + equipoA.getPais() + ": " + tarjetasRojasA + ", " + equipoB.getPais() + ": " + tarjetasRojasB);
+	}
 
 	public void jugarFases(LinkedList<Equipo> equipos) {
-		String paisGanador = "";
-		
-		while(equipos.size() == 16){
-		 paisGanador = (String) JOptionPane.showInputDialog(null, "Selecciona tu equipo ganador", null, 0, null, this.generarListaEquipos(), this.generarListaEquipos()[0]);
-		}
 	
+		String paisGanador = (String) JOptionPane.showInputDialog(
+			null, "Selecciona tu equipo ganador", "Apuesta", JOptionPane.QUESTION_MESSAGE, null, this.generarListaEquipos(), this.generarListaEquipos()[0]
+		);
 
-		System.out.println("-------------------");
-		LinkedList<Equipo> equiposGanadores = new LinkedList<Equipo>();
-	
-		System.out.println("Fase: " + equipos.size() / 2);
-		System.out.println("-------------------");
+		while (equipos.size() > 1) {
+			System.out.println("-------------------");
+			System.out.println("Fase: " + equipos.size() / 2);
+			System.out.println("-------------------");
 
-		for (int i = 0; i < equipos.size() / 2; i++) {
+			LinkedList<Equipo> equiposGanadores = new LinkedList<>();
 
-			Equipo equipoA = equipos.get(i);
-			Equipo equipoB = equipos.get(i + 1);
-			int golesA = (int) (Math.random() * 10) + 1;
-			int golesB = (int) (Math.random() * 10) + 1;
+			for (int i = 0; i < equipos.size(); i += 2) {
+				Equipo equipoA = equipos.get(i);
+				Equipo equipoB = equipos.get(i + 1);
+				int golesA = (int) (Math.random() * 10);
+				int golesB = (int) (Math.random() * 10);
+				int tarjetasAmarillasA = (int) (Math.random() * 5);
+				int tarjetasRojasA = (int) (Math.random() * 3);
+				int tarjetasAmarillasB = (int) (Math.random() * 5);
+				int tarjetasRojasB = (int) (Math.random() * 3);
 
-			if (golesA != golesB) {
+				mostrarResultadosPartido(equipoA, golesA, tarjetasAmarillasA, tarjetasRojasA, equipoB, golesB, tarjetasAmarillasB, tarjetasRojasB);
 
-				if (golesA < golesB) {
-					System.out.println("Se elimino equipo " + equipoA.getPais());
-					equiposGanadores.add(equipoB);
+				if (golesA != golesB) {
+					if (golesA > golesB) {
+						equiposGanadores.add(equipoA);
+						System.out.println("Se eliminó el equipo " + equipoB.getPais());
+					} else {
+						equiposGanadores.add(equipoB);
+						System.out.println("Se eliminó el equipo " + equipoA.getPais());
+					}
 				} else {
-					equiposGanadores.add(equipoA);
-
-					System.out.println("Se elimino equipo " + equipoA.getPais());
+					Equipo ganadorPenales = penales(equipoA, equipoB);
+					equiposGanadores.add(ganadorPenales);
+					System.out.println("Ganador por penales: " + ganadorPenales.getPais());
 				}
+			}
+
+			equipos = equiposGanadores;
+		}
+
+
+		if (!equipos.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Equipo campeón: " + equipos.getFirst().getPais());
+			if (paisGanador.equalsIgnoreCase(equipos.getFirst().getPais())) {
+				JOptionPane.showMessageDialog(null, "¡Ganaste la apuesta!");
 			} else {
-
-				equiposGanadores.add(penales(equipoA, equipoB));
-
+				JOptionPane.showMessageDialog(null, "Perdiste la apuesta.");
 			}
-
 		}
-		if (equiposGanadores.size() == 1) {
-
-			JOptionPane.showMessageDialog(null, "Equipo campeon: " + equiposGanadores.getFirst().getPais());
-			if (paisGanador.equalsIgnoreCase(equiposGanadores.getFirst().getPais())){
-				JOptionPane.showMessageDialog(null, "Ganaste la apuesta!");
-
-			}
-
-		} else {
-			this.jugarFases(equiposGanadores);
-		}
-
 	}
+
 
 	public static Equipo penales(Equipo equipoA, Equipo equipoB) {
 
