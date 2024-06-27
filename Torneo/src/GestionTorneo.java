@@ -106,6 +106,7 @@ public class GestionTorneo {
 		String paisGanador = (String) JOptionPane.showInputDialog(
 			null, "Selecciona tu equipo ganador", "Apuesta", JOptionPane.QUESTION_MESSAGE, null, this.generarListaEquipos(), this.generarListaEquipos()[0]
 		);
+		String fase = "";
 
 		while (equipos.size() > 1) {
 			System.out.println("-------------------");
@@ -113,6 +114,26 @@ public class GestionTorneo {
 			System.out.println("-------------------");
 
 			LinkedList<Equipo> equiposGanadores = new LinkedList<>();
+			
+			switch (equipos.size() / 2) {
+			case 8: 
+				fase = "Octavos";
+				
+				break;
+			case 4: 
+				fase = "Cuartos";
+				
+				break;
+			case 2: 
+				fase = "Semifinal";
+				
+				break;
+			case 1: 
+				fase = "Final";
+				
+				break;
+
+			}
 
 			for (int i = 0; i < equipos.size(); i += 2) {
 				Equipo equipoA = equipos.get(i);
@@ -123,7 +144,9 @@ public class GestionTorneo {
 				int tarjetasRojasA = (int) (Math.random() * 3);
 				int tarjetasAmarillasB = (int) (Math.random() * 5);
 				int tarjetasRojasB = (int) (Math.random() * 3);
-
+				
+				
+				JOptionPane.showMessageDialog(null, "Partido de " + fase );
 				mostrarResultadosPartido(equipoA, golesA, tarjetasAmarillasA, tarjetasRojasA, equipoB, golesB, tarjetasAmarillasB, tarjetasRojasB);
 
 				if (golesA != golesB) {
